@@ -9,25 +9,29 @@ fetch('playideas.json')
 let playIdeas = [];
 let currentPlayIdeaIndex = -1;
 
-function displayRandomPlayIdea() {
+function displayPlayIdea(index) {
     const playIdeaElement = document.getElementById('playIdea');
     const playIdeaImage = document.getElementById('playIdeaImage');
 
+
+    playIdeaElement.textContent = playIdeas[index].name;
+
+
+    playIdeaImage.src = playIdeas[index].image;
+    playIdeaImage.alt = playIdeas[index].name;
+    playIdeaImage.style.display = 'block'; // Show the image
+}
+
+function displayRandomPlayIdea() {
     if (playIdeas.length > 0) {
 
         const randomIndex = getRandomIndex(playIdeas.length);
         currentPlayIdeaIndex = randomIndex;
         
 
-        playIdeaElement.textContent = playIdeas[randomIndex].name;
-        
-
-        playIdeaImage.src = playIdeas[randomIndex].image;
-        playIdeaImage.alt = playIdeas[randomIndex].name;
+        displayPlayIdea(randomIndex);
     } else {
-        playIdeaElement.textContent = "No play ideas available.";
-        playIdeaImage.src = "";
-        playIdeaImage.alt = "";
+        alert("No play ideas available.");
     }
 }
 
@@ -41,7 +45,7 @@ function getNewPlayIdea() {
         
         currentPlayIdeaIndex = newIndex;
 
-        displayRandomPlayIdea();
+        displayPlayIdea(newIndex);
     } else {
         alert("No play ideas available.");
     }
