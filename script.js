@@ -3,6 +3,7 @@ fetch('playideas.json')
     .then(response => response.json())
     .then(data => {
         playIdeas = data;
+        displayRandomPlayIdea();
     })
     .catch(error => console.error('Error fetching play ideas:', error));
 
@@ -20,19 +21,21 @@ function displayRandomPlayIdea() {
         
 
         playIdeaElement.textContent = playIdeas[randomIndex].name;
-        
 
         playIdeaImage.src = playIdeas[randomIndex].image;
         playIdeaImage.alt = playIdeas[randomIndex].name;
+        playIdeaImage.style.display = 'block';
     } else {
         playIdeaElement.textContent = "No play ideas available.";
         playIdeaImage.src = "";
         playIdeaImage.alt = "";
+        playIdeaImage.style.display = 'none';
     }
 }
 
 function getNewPlayIdea() {
     if (playIdeas.length > 0) {
+
         let newIndex;
         do {
             newIndex = getRandomIndex(playIdeas.length);
