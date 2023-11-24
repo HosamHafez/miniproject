@@ -6,12 +6,17 @@ body {
 }
 
 .container {
-    max-width: 80%;
+    max-width: 800px;
     margin: 50px auto;
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 button {
@@ -26,6 +31,7 @@ button {
 button:hover {
     background-color: #00796b;
 }
+
 
 @media only screen and (max-width: 600px) {
     .container {
