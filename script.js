@@ -8,6 +8,7 @@ fetch('playideas.json')
 
 let playIdeas = [];
 let currentPlayIdeaIndex = -1;
+let isFirstLoad = true;
 
 function displayPlayIdea(index) {
     const playIdeaElement = document.getElementById('playIdea');
@@ -19,7 +20,7 @@ function displayPlayIdea(index) {
 
     playIdeaImage.src = playIdeas[index].image;
     playIdeaImage.alt = playIdeas[index].name;
-    playIdeaImage.style.display = 'block'; // Show the image
+    playIdeaImage.style.display = 'block';
 }
 
 function displayRandomPlayIdea() {
@@ -27,9 +28,13 @@ function displayRandomPlayIdea() {
 
         const randomIndex = getRandomIndex(playIdeas.length);
         currentPlayIdeaIndex = randomIndex;
-        
 
-        displayPlayIdea(randomIndex);
+
+        if (!isFirstLoad) {
+            displayPlayIdea(randomIndex);
+        }
+
+        isFirstLoad = false;
     } else {
         alert("No play ideas available.");
     }
@@ -44,6 +49,7 @@ function getNewPlayIdea() {
         } while (newIndex === currentPlayIdeaIndex);
         
         currentPlayIdeaIndex = newIndex;
+
 
         displayPlayIdea(newIndex);
     } else {
